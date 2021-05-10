@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/views/Home.vue";
-import PhotoDetails from "@/views/PhotoDetails.vue";
+import PostDetails from "@/views/PostDetails.vue";
+// import PageNotFound from "@/views/PageNotFound.vue";
 
 const routes = [
   {
@@ -9,11 +10,16 @@ const routes = [
     component: Home,
   },
   {
-    path: "/details",
+    path: "/details/:postID",
     name: "details",
-    component: PhotoDetails,
-    props: true
+    component: PostDetails,
+    // props: true
   },
+  // { 
+  //   path: '/:catchAll(.*)', 
+  //   component: PageNotFound,
+  //   name: 'NotFound'
+  // }
 ];
  
 const router = createRouter({
