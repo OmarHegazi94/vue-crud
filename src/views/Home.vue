@@ -1,5 +1,12 @@
 <template>
-  <h1>Home page</h1>
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="col">
+      <h1>Home page</h1>
+    </div>
+    <div class="col-lg-2 d-grid gap-2">
+      <router-link to="/addPost" class="btn btn-primary btn-block">Add Post</router-link>
+    </div>
+  </div>
 
   <div v-if="posts" class="table-responsive">
     <table class="table table-bordered table-striped mt-4 text-center">
@@ -24,13 +31,23 @@
             {{ post.body }}
           </td>
 
-          <td>
-            <button
-              class="btn btn-sm btn-primary"
-              @click="getSinglePost(post.id)"
+          <td align="center">
+            <div
+              class="btn-group text-center align-middle"
+              role="group"
+              aria-label="Actions"
             >
-              Details
-            </button>
+              <button
+                type="button"
+                class="btn btn-sm btn-primary"
+                @click="getSinglePost(post.id)"
+              >
+                Details
+              </button>
+
+              <button type="button" class="btn btn-secondary">Edit</button>
+              <button type="button" class="btn btn-warning">Delete</button>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -52,8 +69,10 @@ export default {
         axios
           .get("https://jsonplaceholder.typicode.com/posts")
           .then((response) => {
-            const results = response.data.slice(0, 10);
-            this.posts = results;
+            console.log(response.data)
+            // const results = response.data.slice(0, 10);
+            // this.posts = results;
+            this.posts = response.data;
           });
       } catch (error) {
         console.log(error);
@@ -61,7 +80,7 @@ export default {
     },
     getSinglePost(postID) {
       this.$router.push({
-        name: 'details',
+        name: "details",
         params: { postID },
       });
     },
