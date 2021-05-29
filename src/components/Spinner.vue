@@ -1,7 +1,7 @@
 <template>
-  <div class="cssload-container">
-    <div class="cssload-whirlpool"></div>
-  </div>
+    <div class="cssload-container">
+        <div class="cssload-whirlpool"></div>
+    </div>
 </template>
 
 <script>
@@ -10,86 +10,86 @@ export default {};
 
 <style scoped>
 .cssload-container {
-  position: relative;
+    position: relative;
 }
 
 .cssload-whirlpool,
 .cssload-whirlpool::before,
 .cssload-whirlpool::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border: 1px solid rgb(204, 204, 204);
-  border-left-color: rgb(0, 0, 0);
-  border-radius: 524px;
-  -o-border-radius: 524px;
-  -ms-border-radius: 524px;
-  -webkit-border-radius: 524px;
-  -moz-border-radius: 524px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid rgb(204, 204, 204);
+    border-left-color: rgb(0, 0, 0);
+    border-radius: 524px;
+    -o-border-radius: 524px;
+    -ms-border-radius: 524px;
+    -webkit-border-radius: 524px;
+    -moz-border-radius: 524px;
 }
 
 .cssload-whirlpool {
-  margin: -1px 0 0 -88px;
-  height: 26px;
-  width: 26px;
-  animation: cssload-rotate 1150ms linear infinite;
-  -o-animation: cssload-rotate 1150ms linear infinite;
-  -ms-animation: cssload-rotate 1150ms linear infinite;
-  -webkit-animation: cssload-rotate 1150ms linear infinite;
-  -moz-animation: cssload-rotate 1150ms linear infinite;
+    margin: -1px 0 0 -88px;
+    height: 26px;
+    width: 26px;
+    animation: cssload-rotate 1150ms linear infinite;
+    -o-animation: cssload-rotate 1150ms linear infinite;
+    -ms-animation: cssload-rotate 1150ms linear infinite;
+    -webkit-animation: cssload-rotate 1150ms linear infinite;
+    -moz-animation: cssload-rotate 1150ms linear infinite;
 }
 
 .cssload-whirlpool::before {
-  content: "";
-  margin: -12px 0 0 -12px;
-  height: 23px;
-  width: 23px;
-  animation: cssload-rotate 1150ms linear infinite;
-  -o-animation: cssload-rotate 1150ms linear infinite;
-  -ms-animation: cssload-rotate 1150ms linear infinite;
-  -webkit-animation: cssload-rotate 1150ms linear infinite;
-  -moz-animation: cssload-rotate 1150ms linear infinite;
+    content: "";
+    margin: -12px 0 0 -12px;
+    height: 23px;
+    width: 23px;
+    animation: cssload-rotate 1150ms linear infinite;
+    -o-animation: cssload-rotate 1150ms linear infinite;
+    -ms-animation: cssload-rotate 1150ms linear infinite;
+    -webkit-animation: cssload-rotate 1150ms linear infinite;
+    -moz-animation: cssload-rotate 1150ms linear infinite;
 }
 
 .cssload-whirlpool::after {
-  content: "";
-  margin: -15px 0 0 -15px;
-  height: 29px;
-  width: 29px;
-  animation: cssload-rotate 2300ms linear infinite;
-  -o-animation: cssload-rotate 2300ms linear infinite;
-  -ms-animation: cssload-rotate 2300ms linear infinite;
-  -webkit-animation: cssload-rotate 2300ms linear infinite;
-  -moz-animation: cssload-rotate 2300ms linear infinite;
+    content: "";
+    margin: -15px 0 0 -15px;
+    height: 29px;
+    width: 29px;
+    animation: cssload-rotate 2300ms linear infinite;
+    -o-animation: cssload-rotate 2300ms linear infinite;
+    -ms-animation: cssload-rotate 2300ms linear infinite;
+    -webkit-animation: cssload-rotate 2300ms linear infinite;
+    -moz-animation: cssload-rotate 2300ms linear infinite;
 }
 
 @keyframes cssload-rotate {
-  100% {
-    transform: rotate(360deg);
-  }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @-o-keyframes cssload-rotate {
-  100% {
-    -o-transform: rotate(360deg);
-  }
+    100% {
+        -o-transform: rotate(360deg);
+    }
 }
 
 @-ms-keyframes cssload-rotate {
-  100% {
-    -ms-transform: rotate(360deg);
-  }
+    100% {
+        -ms-transform: rotate(360deg);
+    }
 }
 
 @-webkit-keyframes cssload-rotate {
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 @-moz-keyframes cssload-rotate {
-  100% {
-    -moz-transform: rotate(360deg);
-  }
+    100% {
+        -moz-transform: rotate(360deg);
+    }
 }
 </style>
