@@ -8,8 +8,9 @@
         </div>
     </div>
 
-    <div v-if="posts" class="table-responsive">
-        <table class="table table-bordered table-striped mt-4 text-center">
+    <div class="table-responsive">
+        <Spinner fullwidth='fullwidth' v-if="displaySpinner" />
+        <table v-else class="table table-bordered table-striped mt-4 text-center">
             <thead>
                 <tr>
                     <th scope="col">userId</th>
@@ -49,20 +50,29 @@
 
 <script>
 import axios from "axios";
+import Spinner from "@/components/Spinner.vue";
+
 export default {
     data() {
         return {
             posts: [],
+            message: "",
+            displaySpinner: false,
         };
+    },
+    components: {
+        Spinner,
     },
     methods: {
         getData() {
             try {
+                this.displaySpinner = true;
                 axios.get("https://jsonplaceholder.typicode.com/posts").then((response) => {
                     console.log(response.data);
                     // const results = response.data.slice(0, 10);
                     // this.posts = results;
                     this.posts = response.data;
+                    this.displaySpinner = false;
                 });
             } catch (error) {
                 console.log(error);
