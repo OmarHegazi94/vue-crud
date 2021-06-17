@@ -8,8 +8,10 @@
         </div>
     </div>
 
+    <Toast v-if="showToast" :showToast='showToast' :toastTitle='toastTitle' :toastBody='toastBody' />
+
     <div class="table-responsive">
-        <Spinner fullwidth='fullwidth' v-if="displaySpinner" />
+        <Spinner fullwidth="fullwidth" v-if="displaySpinner" />
         <table v-else class="table table-bordered table-striped mt-4 text-center">
             <thead>
                 <tr>
@@ -39,7 +41,7 @@
                             </button>
 
                             <button type="button" class="btn btn-secondary">Edit</button>
-                            <button type="button" class="btn btn-warning">Delete</button>
+                            <button type="button" class="btn btn-warning" @click="deletePost(post.id)">Delete</button>
                         </div>
                     </td>
                 </tr>
@@ -51,6 +53,7 @@
 <script>
 import axios from "axios";
 import Spinner from "@/components/Spinner.vue";
+import Toast from "@/components/Toast.vue";
 
 export default {
     data() {
@@ -58,17 +61,22 @@ export default {
             posts: [],
             message: "",
             displaySpinner: false,
+            // Toast
+            toastBody: '',
+            toastTitle: '',
+            showToast: false
         };
     },
     components: {
         Spinner,
+        Toast
     },
     methods: {
         getData() {
             try {
                 this.displaySpinner = true;
                 axios.get("https://jsonplaceholder.typicode.com/posts").then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     // const results = response.data.slice(0, 10);
                     // this.posts = results;
                     this.posts = response.data;
@@ -83,6 +91,21 @@ export default {
                 name: "details",
                 params: { postID },
             });
+        },
+        deletePost(postID) {
+            try {
+                axios.delete(`https://jsonplaceholder.typicode.com/posts/${postID}`).then((response) => {
+                    console.log(response.data);
+                    this.getData();
+                    this.showToast = true;
+                    this.toastTitle = 'Delete Post';
+                    this.toastBody = `Post with ID ${postID} Deleted Successfully !`
+
+                    setTimeout(() => this.showToast = false, 5000);
+                });
+            } catch (error) {
+                console.log(error);
+            }
         },
     },
     beforeMount() {
