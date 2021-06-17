@@ -99,7 +99,7 @@ export default {
                     this.getData();
                     this.showToast = true;
                     this.toastTitle = 'Delete Post';
-                    this.toastBody = `Post with ID ${postID} Deleted Successfully !`
+                    this.toastBody = `Post with ID ${postID} was deleted successfully !`
 
                     setTimeout(() => this.showToast = false, 5000);
                 });
