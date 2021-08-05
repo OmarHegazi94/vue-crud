@@ -40,7 +40,7 @@
                                 Details
                             </button>
 
-                            <button type="button" class="btn btn-secondary">Edit</button>
+                            <button type="button" class="btn btn-secondary" @click="editPost(post.id)">Edit</button>
                             <button type="button" class="btn btn-warning" @click="deletePost(post.id)">Delete</button>
                         </div>
                     </td>
@@ -89,6 +89,12 @@ export default {
         getSinglePost(postID) {
             this.$router.push({
                 name: "details",
+                params: { postID },
+            });
+        },
+        editPost(postID) {
+            this.$router.push({
+                name: "AddPost",
                 params: { postID },
             });
         },

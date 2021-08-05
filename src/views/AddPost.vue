@@ -1,4 +1,7 @@
 <template>
+
+    <Spinner fullwidth="fullwidth" v-if="displaySpinner" />
+
     <Toast v-if="showToast" :showToast="showToast" :toastTitle="toastTitle" :toastBody="toastBody" />
 
     <div v-if="errors.length > 0" class="bg-light mb-4 p-2 rounded border">
@@ -30,8 +33,11 @@
         <p>body: {{ post.body }}</p> -->
 
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">
+            <button v-if="postID === '' " type="submit" class="btn btn-primary">
                 Add Post
+            </button>
+            <button v-if="postID !== '' " type="submit" class="btn btn-primary">
+                Edit Post
             </button>
         </div>
     </form>
@@ -40,21 +46,24 @@
 <script>
 import axios from "axios";
 
+import Spinner from "@/components/Spinner.vue";
 import Toast from "@/components/Toast.vue";
 
 
 export default {
     components: {
         Toast,
+        Spinner
     },
     data() {
         return {
+            postID: this.$route.params.postID,
             post: {
                 userId: 1,
                 title: "",
                 body: "",
             },
-            // isSubmitted: false,
+            displaySpinner: false,
 
             // Toast
             toastBody: "",
@@ -63,6 +72,26 @@ export default {
 
             errors: []
         };
+    },
+    beforeMount() {
+        // console.log(this.postID == "")
+        try {
+            if (this.postID) {
+                this.displaySpinner = true;
+                axios.get(`https://jsonplaceholder.typicode.com/posts/${this.postID}`).then((response) => {
+                    // console.log(response.data);
+                    // const results = response.data.slice(0, 10);
+                    // this.posts = results;
+                    this.post = response.data;
+                    this.displaySpinner = false;
+                    console.log(response.data)
+                });
+            } else {
+                this.message = "Couldn't Fetch The Post";
+            }
+        } catch (error) {
+            console.log(error);
+        }
     },
     methods: {
         submitForm() {
@@ -79,8 +108,14 @@ export default {
                             this.post.body = "";
 
                             this.showToast = true;
-                            this.toastTitle = "Add Post";
-                            this.toastBody = `Post with ID ${this.post.userId} was added Successfully !`;
+                            if(this.postID === '') {
+
+                                this.toastTitle = "Add Post";
+                                this.toastBody = `Post with ID ${this.post.userId} has been added Successfully !`;
+                            } else {                                
+                                this.toastTitle = "Edited Post";
+                                this.toastBody = `Post with ID ${this.post.userId} has been edited Successfully !`;
+                            }
 
                             this.errors = [];
                             setTimeout(() => (this.showToast = false), 5000);
